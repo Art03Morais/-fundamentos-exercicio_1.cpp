@@ -1,0 +1,21 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	int numero;
+	cout<<"digite um numero de 5 digitos"<<endl;
+	cin>>numero;
+	
+	int digito1 = numero / 10000;
+	int digito2 = (numero % 10000) / 1000;
+	int digito3 = (numero % 1000) / 100;
+	int digito4 = (numero % 100) / 10;
+	int digito5 = numero % 10; 
+	
+	if (digito1 == digito5 && digito2 == digito4) {
+		cout<<"o numero "<<numero<<" eh um palindromo"<<endl;
+	} else {
+		cout<<"o numero "<<numero<<" nao eh um palindromo"<<endl;
+	}
+	return 0;
+}
