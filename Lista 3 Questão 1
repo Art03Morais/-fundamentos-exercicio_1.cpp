@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int tanques;
+    double Tkm = 0.0, Tlitros = 0.0;
+
+    cout << "Digite o numero de tanques completados: ";
+    cin >> tanques;
+
+    if (tanques <= 0) {
+        cout << "Nenhum tanque completado" << endl;
+        return 0;
+    }
+
+    for (int i = 1; i <= tanques; ++i) {
+        double litros, km;
+        cout << "Digite a quantidade de litros no tanque " << i << ": ";
+        cin >> litros;
+        cout << "Digite a quantidade de quilômetros percorridos no tanque " << i << ": ";
+        cin >> km;
+
+        Tkm = Tkm + km;
+        Tlitros = Tlitros + litros;
+
+        cout << "Consumo do tanque " << i << ": " << km / litros << " km/l" << endl;
+    }
+	cout << "Media de consumo: " << Tkm / Tlitros << " km/l" << endl;
+
+    return 0;
+}
