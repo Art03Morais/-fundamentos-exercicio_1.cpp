@@ -1,0 +1,15 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+	int senha;
+	
+	cout<<"digite a senha:"<<senha<< endl;
+	cin>>senha;
+	if (senha == 1234)
+	cout<<"Acesso permitido";
+	else 
+	cout<<"Acesso negado";
+	
+	return 0;
+}
