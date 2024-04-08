@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	int binario;
+	int decimal = 0, expoente = 0;
+	
+	cout<<"digite um numero binario: ";
+	cin>> binario;
+	
+	while (binario != 0) {
+		decimal = decimal + (binario % 10) * (1 << expoente);
+		binario = binario / 10;
+		expoente++;
+	}
+	cout<<"o numero binario em sua forma decimal eh "<<decimal<< endl;
+	
+	return 0;
+}
