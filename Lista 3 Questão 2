@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	double alcool, gasolina;
+	cout<<"digite o valor do alcool"<<endl;
+	cin>> alcool;
+	cout<<"digite o valor da gasolina"<<endl;
+	cin>> gasolina;
+	
+	double razao = alcool / gasolina;
+	if (razao <= 0.7) {
+	cout<<"abasteca com alcool"<< endl;
+	} else {
+	cout<<"abasteca com gasolina"<<endl; 
+}
+
+	return 0;
+}
