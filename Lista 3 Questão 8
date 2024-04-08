@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	
+	double numero1, numero2;
+	char caractere;
+	
+	cout<<"digite o primeiro nummero: "<<endl;
+	cin>> numero1;
+	cout<<"digite o segundo numero: "<<endl;
+	cin>> numero2;
+	cout<<"digite a operacao que deseja efetuar (+, - , * ou /): "<<endl;
+	cin>> caractere;
+	
+	switch (caractere) {
+		case '+':
+			cout<<"Resultado: "<<numero1 + numero2 <<endl;
+			break;
+		case '-':
+			cout<<"Resultado: "<<numero1 - numero2 <<endl;
+			break;
+		case '*':
+			cout<<"Resultado: "<<numero1 * numero2 <<endl;
+			break;
+		case '/':
+			if (numero2 != 0){
+				cout<<"Resultado: "<<numero1 / numero2<<endl;
+			} else {
+				cout<<"ERRO: divisao por zero"<<endl;
+			}
+			break;
+		default:
+			cout<<"ERRO"<<endl;
+			break;
+	}
+	return 0;
+}
