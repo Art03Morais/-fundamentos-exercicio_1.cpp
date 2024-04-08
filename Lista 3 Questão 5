@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	
+	char caractere;
+	
+	cout<<"digite um caractere"<<endl;
+	cin>> caractere;
+	
+	switch (caractere) {
+		case 'A':
+		case 'E':
+		case 'I':
+		case 'O':
+		case 'U':
+		case 'a':
+		case 'e':
+		case 'i':
+		case 'o':
+		case 'u':
+			cout<<"o caractere "<<caractere<<" eh uma vogal"<<endl;
+		break;
+	default: ;
+	    cout<<"o caractere"<<caractere<<" nao eh uma vogal"<<endl;
+	}
+	return 0;
+}
