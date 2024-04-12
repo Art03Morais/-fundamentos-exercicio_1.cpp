@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n = 10; 
+    double e = 1.0; 
+
+    
+    double fatorial = 1.0;
+    for (int i = 1; i <= n; ++i) {
+        fatorial *= i; 
+        e += 1.0 / fatorial; 
+    }
+
+    cout << "O valor de e eh: " << e << std::endl;
+
+    return 0;
+}
+
