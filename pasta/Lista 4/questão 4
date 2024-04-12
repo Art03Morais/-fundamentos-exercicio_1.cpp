@@ -1,0 +1,55 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    double preco1 = 2.98;
+    double preco2 = 4.50;
+    double preco3 = 9.98;
+    double preco4 = 4.49;
+    double preco5 = 6.87;
+
+    int numeroProduto;
+    int quantidadeVendida;
+    double totalVendas = 0.0;
+
+    while (true) {
+        cout << "Digite o numero do produto: ";
+        cin >> numeroProduto;
+
+        if (numeroProduto == -1) {
+            break;
+        } else if (numeroProduto < 1 || numeroProduto > 5) {
+            cout << "Numero de produto invalido. Tente novamente."<<endl;
+            continue;
+        }
+
+        cout << "Digite a quantidade vendida: ";
+        cin >> quantidadeVendida;
+
+        switch (numeroProduto) {
+            case 1:
+                totalVendas += preco1 * quantidadeVendida;
+                break;
+            case 2:
+                totalVendas += preco2 * quantidadeVendida;
+                break;
+            case 3:
+                totalVendas += preco3 * quantidadeVendida;
+                break;
+            case 4:
+                totalVendas += preco4 * quantidadeVendida;
+                break;
+            case 5:
+                totalVendas += preco5 * quantidadeVendida;
+                break;
+            default:
+                cout << "Número de produto inválido. Tente novamente."<<endl;
+                break;
+        }
+    }
+
+    cout << "Total de vendas: R$ " << totalVendas << endl;
+
+    return 0;
+}
