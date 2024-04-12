@@ -1,0 +1,24 @@
+a) 
+#include<iostream>
+using namespace std;
+
+int main () {
+	
+	int numero, i;
+	unsigned long long fatorial = 1;
+	
+	cout<<"digite um numero para calcular seu fatorial"<<endl;
+	cin>>numero;
+	
+	if (numero < 0) 
+		cout<<"ERRO numero negativo no definido"<<endl;
+		return 1;
+
+	for (i = 1 ; i <= numero; ++i)
+		fatorial *= i;
+		
+	cout<<"o fatorial de "<<numero<<" eh "<<fatorial<<endl;
+	
+	
+	return 0;
+}
