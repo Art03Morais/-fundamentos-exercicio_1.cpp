@@ -1,0 +1,24 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    const int NUMERO_DE_NUMEROS = 5; 
+    int numeros[NUMERO_DE_NUMEROS]; 
+    // Lê os cinco números
+    for (int i = 0; i < NUMERO_DE_NUMEROS; ++i) {
+        cout << "Digite o " << i + 1 << "º número: ";
+        cin >> numeros[i];
+    }
+
+    cout << "\nBarras de asteriscos:\n";
+    for (int i = 0; i < NUMERO_DE_NUMEROS; ++i) {
+        cout << i + 1 << ": ";
+        for (int j = 0; j < numeros[i]; ++j) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
