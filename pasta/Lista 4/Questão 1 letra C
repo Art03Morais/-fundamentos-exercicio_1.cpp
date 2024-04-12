@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+    int n = 10; 
+    double x; 
+    double resultado = 1.0; 
+
+    cout << "Digite o valor de x: ";
+    cin >> x;
+
+    double termo = 1.0;
+    for (int i = 1; i <= n; ++i) {
+        termo *= x / i; 
+        resultado += termo; 
+    }
+
+    cout << "O valor de e elevado a " << x << " eh: " << resultado << endl;
+
+    return 0;
+}
