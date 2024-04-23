@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std;
+
+void torresHanoi(int n, char estacaOrigem, char estacaDestino, char estacaTemporaria) {
+    if (n == 1) {
+        cout << estacaOrigem << " -> " << estacaDestino << endl;
+        return;
+    }
+    torresHanoi(n - 1, estacaOrigem, estacaTemporaria, estacaDestino);
+    cout << estacaOrigem << " -> " << estacaDestino << endl;
+    torresHanoi(n - 1, estacaTemporaria, estacaDestino, estacaOrigem);
+}
+
+int main() {
+    int numDiscos;
+    cout << "Digite o numero de discos: ";
+    cin >> numDiscos;
+    cout << "Instrucoes para mover os discos:" << endl;
+    torresHanoi(numDiscos, 'A', 'C', 'B'); 
+
+    return 0;
+}
