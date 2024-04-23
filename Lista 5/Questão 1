@@ -1,0 +1,19 @@
+#include <iostream>
+
+using namespace std;
+	
+	float Celsius, Fahrenheit;
+	
+	float convertor () {
+		Fahrenheit = (9.0/5.0)* Celsius + 32; 
+		return Fahrenheit;
+	}
+	int main () {
+		cout<<"Celsius || Fahrenheit"<<endl;
+		for(Celsius = 0; Celsius <= 100; Celsius += 1) {
+			 Fahrenheit = convertor();
+        cout << "   " << Celsius << "    ==   " << Fahrenheit << endl;
+    }
+
+    return 0; 
+}
