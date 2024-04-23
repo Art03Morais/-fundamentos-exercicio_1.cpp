@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    srand(time(0));
+    int numeroAleatorio = rand() % 1000 + 1;
+
+    cout << "Eu tenho um número entre 1 e 1000." << endl;
+    cout << "Você consegue adivinhar o meu número?" << endl;
+
+    int palpite;
+    do {
+        cout << "Digite seu palpite: ";
+        cin >> palpite;
+
+        if (palpite == numeroAleatorio) {
+            cout << "Excelente! Você adivinhou o número!" << endl;
+        } else {
+            cout << (palpite < numeroAleatorio ? "Muito baixo. " : "Muito alto. ") << "Tente novamente." << endl;
+        }
+    } while (palpite != numeroAleatorio);
+
+    return 0;
+}
