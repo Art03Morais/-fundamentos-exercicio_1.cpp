@@ -1,1 +1,43 @@
-???
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    srand(time(0)); // Inicializa o gerador de números aleatórios com o tempo atual
+
+    int menorLimite = 1;
+    int maiorLimite = 100;
+    int resposta;
+    int palpite;
+
+    cout << "Pense em um número entre 1 e 100 e eu tentarei adivinhá-lo em até sete tentativas." << endl;
+
+    for (int tentativa = 1; tentativa <= 7; ++tentativa) {
+        // Ajuste a lógica para sempre gerar o palpite no meio do intervalo
+        palpite = (menorLimite + maiorLimite) / 2;
+
+        cout << "Tentativa " << tentativa << ": O número é " << palpite << "? (Digite 1 se for menor, 2 se for maior, ou 3 se for igual): ";
+        cin >> resposta;
+
+        if (resposta == 1) {
+            maiorLimite = palpite - 1;
+        } else if (resposta == 2) {
+            menorLimite = palpite + 1;
+        } else if (resposta == 3) {
+            cout << "Acertei! O número é " << palpite << "." << endl;
+            break;
+        } else {
+            cout << "Resposta inválida. Por favor, digite 1, 2 ou 3." << endl;
+            tentativa--; // Repetir a mesma tentativa
+        }
+    }
+
+    if (resposta != 3) {
+        cout << "Não consegui adivinhar o número. Talvez você tenha pensado em um número muito difícil!" << endl;
+    }
+
+    return 0;
+}
+
