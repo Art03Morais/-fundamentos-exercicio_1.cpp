@@ -1,0 +1,73 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    ifstream arquivoAltura("altura.txt");
+    ifstream arquivoPeso("peso.txt");
+
+    if (!arquivoAltura.is_open() || !arquivoPeso.is_open()) {
+        cout << "Erro ao abrir os arquivos." << endl;
+        return 1;
+    }
+
+    string codigoAltura, codigoPeso;
+    double maiorAltura = -1.0, maiorPeso = -1.0;
+    string codigoMaiorAltura, codigoMaiorPeso;
+    double altura, peso;
+
+    // Ler arquivos linha por linha
+    while (getline(arquivoAltura, codigoAltura) && arquivoPeso >> altura) {
+        getline(arquivoPeso, codigoPeso); // Ler código de pessoa do arquivo peso
+
+        // Verificar se os códigos coincidem (para garantir integridade dos dados)
+        if (codigoAltura != codigoPeso) {
+            cout << "Erro: Códigos não coincidem nos arquivos." << endl;
+            return 1;
+        }
+
+        // Verificar maior altura
+        if (altura > maiorAltura) {
+            maiorAltura = altura;
+            codigoMaiorAltura = codigoAltura;
+        }
+    }
+
+    arquivoAltura.close();
+    arquivoPeso.close();
+
+    // Reabrir o arquivo de peso para reler
+    arquivoPeso.open("peso.txt");
+    if (!arquivoPeso.is_open()) {
+        cout << "Erro ao abrir arquivo de peso novamente." << endl;
+        return 1;
+    }
+
+    // Ler arquivos novamente para encontrar maior peso
+    while (getline(arquivoPeso, codigoPeso) && arquivoAltura >> peso) {
+        getline(arquivoAltura, codigoAltura); // Ler código de pessoa do arquivo altura
+
+        // Verificar se os códigos coincidem (para garantir integridade dos dados)
+        if (codigoAltura != codigoPeso) {
+            cout << "Erro: Códigos não coincidem nos arquivos." << endl;
+            return 1;
+        }
+
+        // Verificar maior peso
+        if (peso > maiorPeso) {
+            maiorPeso = peso;
+            codigoMaiorPeso = codigoPeso;
+        }
+    }
+
+    arquivoAltura.close();
+    arquivoPeso.close();
+
+    // Imprimir resultados
+    cout << "Pessoa com maior altura: " << codigoMaiorAltura << ", altura: " << maiorAltura << " metros." << endl;
+    cout << "Pessoa com maior peso: " << codigoMaiorPeso << ", peso: " << maiorPeso << " quilogramas." << endl;
+
+    return 0;
+}
