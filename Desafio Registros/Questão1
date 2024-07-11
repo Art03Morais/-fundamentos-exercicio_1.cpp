@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    int ramal;
+    int categoria;
+    string setor;
+    int edificio;
+    int sala;
+    string responsavelRamal;
+    string responsavelAteste;
+
+    cout << "Digite o número do ramal: ";
+    cin >> ramal;
+
+    if (ramal < 1000 || ramal > 2999) {
+        cout << "Número de ramal inválido. Deve estar entre 1000 e 2999." << endl;
+        return 1;
+    }
+
+    cout << "Digite a categoria (0-6): ";
+    cin >> categoria;
+
+    if (categoria < 0 || categoria > 6) {
+        cout << "Categoria inválida. Deve estar entre 0 e 6." << endl;
+        return 1;
+    }
+
+    cout << "Digite o setor: ";
+    cin >> setor;
+
+    cout << "Digite o código do edifício (500 ou 505): ";
+    cin >> edificio;
+
+    if (edificio != 500 && edificio != 505) {
+        cout << "Código de edifício inválido. Deve ser 500 ou 505." << endl;
+        return 1;
+    }
+
+    cout << "Digite o número da sala: ";
+    cin >> sala;
+
+    cout << "Digite o nome do responsável pelo ramal: ";
+    cin >> responsavelRamal;
+
+    cout << "Digite o nome do responsável pelo ateste: ";
+    cin >> responsavelAteste;
+
+    cout << "\n------ INFORMAÇÕES GERAIS DO RAMAL ------" << endl;
+    cout << "Ramal: " << ramal << endl;
+    cout << "Categoria: " << categoria << endl;
+    cout << "Setor: " << setor << endl;
+    cout << "Edifício: " << edificio << endl;
+    cout << "Sala: " << sala << endl;
+    cout << "Responsável pelo ramal: " << responsavelRamal << endl;
+    cout << "Responsável pelo ateste: " << responsavelAteste << endl;
+
+    cout << "\nPressione qualquer tecla para continuar. . .\n";
+
+    cin.ignore(); // To clear the input buffer
+    cin.get(); // Wait for user to press a key
+
+    return 0;
+}
