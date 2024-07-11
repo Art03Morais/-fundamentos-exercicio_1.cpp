@@ -1,0 +1,170 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <iomanip>
+
+using namespace std;
+
+// Função para cadastrar um novo aluno
+void cadastrarAluno() {
+    string nomeAluno;
+    int matricula;
+
+    cout << "Digite o nome do aluno: ";
+    cin.ignore();
+    getline(cin, nomeAluno);
+
+    // Substituir espaços no nome por underscores para formar o nome do arquivo
+    for (char &c : nomeAluno) {
+        if (c == ' ') {
+            c = '_';
+        }
+    }
+
+    // Verificar se o arquivo do aluno já existe
+    ifstream arquivo(nomeAluno + ".txt");
+    if (arquivo.is_open()) {
+        cout << "Aluno ja cadastrado." << endl;
+        arquivo.close();
+        return;
+    }
+
+    // Caso não exista, criar o arquivo com a matrícula na primeira linha
+    ofstream novoArquivo(nomeAluno + ".txt");
+    if (!novoArquivo.is_open()) {
+        cout << "Erro ao criar arquivo do aluno." << endl;
+        return;
+    }
+
+    cout << "Digite a matricula do aluno: ";
+    cin >> matricula;
+
+    // Escrever a matrícula no arquivo
+    novoArquivo << matricula << endl;
+
+    novoArquivo.close();
+    cout << "Aluno cadastrado com sucesso." << endl;
+}
+
+// Função para adicionar nota de um aluno
+void adicionarNota() {
+    string nomeAluno;
+    double nota;
+
+    cout << "Digite o nome do aluno: ";
+    cin.ignore();
+    getline(cin, nomeAluno);
+
+    // Substituir espaços no nome por underscores para formar o nome do arquivo
+    for (char &c : nomeAluno) {
+        if (c == ' ') {
+            c = '_';
+        }
+    }
+
+    ifstream arquivo(nomeAluno + ".txt");
+    if (!arquivo.is_open()) {
+        cout << "Aluno nao cadastrado." << endl;
+        return;
+    }
+
+    // Ler a matrícula do aluno
+    int matricula;
+    arquivo >> matricula;
+
+    arquivo.close();
+
+    // Abrir o arquivo para adicionar nota no final
+    ofstream arquivoNotas(nomeAluno + ".txt", ios_base::app);
+    if (!arquivoNotas.is_open()) {
+        cout << "Erro ao abrir arquivo de notas do aluno." << endl;
+        return;
+    }
+
+    // Pedir e salvar a nota
+    cout << "Digite a nota do aluno: ";
+    cin >> nota;
+
+    arquivoNotas << fixed << setprecision(2) << nota << endl;
+
+    arquivoNotas.close();
+    cout << "Nota adicionada com sucesso." << endl;
+}
+
+// Função para calcular a média de um aluno
+void calcularMedia() {
+    string nomeAluno;
+
+    cout << "Digite o nome do aluno: ";
+    cin.ignore();
+    getline(cin, nomeAluno);
+
+    // Substituir espaços no nome por underscores para formar o nome do arquivo
+    for (char &c : nomeAluno) {
+        if (c == ' ') {
+            c = '_';
+        }
+    }
+
+    ifstream arquivo(nomeAluno + ".txt");
+    if (!arquivo.is_open()) {
+        cout << "Aluno nao cadastrado." << endl;
+        return;
+    }
+
+    // Ler a matrícula do aluno
+    int matricula;
+    arquivo >> matricula;
+
+    // Ler e calcular a média das notas
+    double nota, soma = 0.0;
+    int contador = 0;
+    while (arquivo >> nota) {
+        soma += nota;
+        contador++;
+    }
+
+    arquivo.close();
+
+    if (contador == 0) {
+        cout << "O aluno ainda nao possui notas registradas." << endl;
+    } else {
+        double media = soma / contador;
+        cout << "A media do aluno " << nomeAluno << " (matricula " << matricula << ") e: " << fixed << setprecision(2) << media << endl;
+    }
+}
+
+int main() {
+    int opcao;
+
+    do {
+        cout << "\nMenu:" << endl;
+        cout << "1. Cadastrar aluno" << endl;
+        cout << "2. Adicionar nota de um aluno" << endl;
+        cout << "3. Calcular media de um aluno" << endl;
+        cout << "4. Fechar o programa" << endl;
+        cout << "Escolha uma opcao: ";
+        cin >> opcao;
+
+        switch (opcao) {
+            case 1:
+                cadastrarAluno();
+                break;
+            case 2:
+                adicionarNota();
+                break;
+            case 3:
+                calcularMedia();
+                break;
+            case 4:
+                cout << "Encerrando o programa." << endl;
+                break;
+            default:
+                cout << "Opcao invalida. Tente novamente." << endl;
+        }
+
+    } while (opcao != 4);
+
+    return 0;
+}
