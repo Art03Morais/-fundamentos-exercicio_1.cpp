@@ -1,0 +1,169 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Ramal {
+    int numero;
+    int categoria;
+    string setor;
+    int edificio;
+    int sala;
+    string responsavelRamal;
+    string responsavelAteste;
+};
+
+vector<Ramal> ramais;
+
+void cadastrarRamal() {
+    Ramal r;
+    cout << "Digite o número do ramal: ";
+    cin >> r.numero;
+
+    // Check for duplicate ramal number
+    for (const auto& ramal : ramais) {
+        if (ramal.numero == r.numero) {
+            cout << "Erro: Número de ramal já cadastrado.\n";
+            return;
+        }
+    }
+
+    cout << "Digite a categoria (0-6): ";
+    cin >> r.categoria;
+
+    cout << "Digite o setor: ";
+    cin >> r.setor;
+
+    cout << "Digite o código do edifício (500 ou 505): ";
+    cin >> r.edificio;
+
+    cout << "Digite o número da sala: ";
+    cin >> r.sala;
+
+    cout << "Digite o nome do responsável pelo ramal: ";
+    cin >> r.responsavelRamal;
+
+    cout << "Digite o nome do responsável pelo ateste: ";
+    cin >> r.responsavelAteste;
+
+    ramais.push_back(r);
+
+    cout << "Ramal cadastrado com sucesso!\n";
+}
+
+void mostrarRamal(const Ramal& r) {
+    cout << "Ramal: " << r.numero << endl;
+    cout << "Categoria: " << r.categoria << endl;
+    cout << "Setor: " << r.setor << endl;
+    cout << "Edifício: " << r.edificio << endl;
+    cout << "Sala: " << r.sala << endl;
+    cout << "Responsável pelo ramal: " << r.responsavelRamal << endl;
+    cout << "Responsável pelo ateste: " << r.responsavelAteste << endl;
+}
+
+void pesquisarRamal() {
+    cout << "SELECIONE A FORMA DE PESQUISA QUE DESEJA UTILIZAR:\n";
+    cout << "PRESSIONE 0 para: número do ramal.\n";
+    cout << "PRESSIONE 1 para: setor.\n";
+    cout << "PRESSIONE 2 para: edifício.\n";
+    cout << "PRESSIONE 3 para: responsável pelo ramal.\n";
+    cout << "PRESSIONE 4 para: responsável pelo ateste.\n";
+
+    int opcao;
+    cin >> opcao;
+
+    switch (opcao) {
+        case 0: {
+            int numero;
+            cout << "Digite o número do ramal que deseja pesquisar: ";
+            cin >> numero;
+
+            for (const auto& ramal : ramais) {
+                if (ramal.numero == numero) {
+                    mostrarRamal(ramal);
+                    return;
+                }
+            }
+
+            cout << "Ramal não encontrado.\n";
+            break;
+        }
+        case 1: {
+            string setor;
+            cout << "Digite o setor que deseja pesquisar: ";
+            cin >> setor;
+
+            for (const auto& ramal : ramais) {
+                if (ramal.setor == setor) {
+                    mostrarRamal(ramal);
+                }
+            }
+            break;
+        }
+        case 2: {
+            int edificio;
+            cout << "Digite o edifício que deseja pesquisar: ";
+            cin >> edificio;
+
+            for (const auto& ramal : ramais) {
+                if (ramal.edificio == edificio) {
+                    mostrarRamal(ramal);
+                }
+            }
+            break;
+        }
+        case 3: {
+            string responsavel;
+            cout << "Digite o responsável pelo ramal que deseja pesquisar: ";
+            cin >> responsavel;
+
+            for (const auto& ramal : ramais) {
+                if (ramal.responsavelRamal == responsavel) {
+                    mostrarRamal(ramal);
+                }
+            }
+            break;
+        }
+        case 4: {
+            string responsavel;
+            cout << "Digite o responsável pelo ateste que deseja pesquisar: ";
+            cin >> responsavel;
+
+            for (const auto& ramal : ramais) {
+                if (ramal.responsavelAteste == responsavel) {
+                    mostrarRamal(ramal);
+                }
+            }
+            break;
+        }
+        default:
+            cout << "Opção inválida.\n";
+    }
+}
+
+int main() {
+    int opcao;
+    do {
+        cout << "1. Cadastrar Ramal\n";
+        cout << "2. Pesquisar Ramal\n";
+        cout << "3. Sair\n";
+        cout << "Escolha uma opção: ";
+        cin >> opcao;
+
+        switch (opcao) {
+            case 1:
+                cadastrarRamal();
+                break;
+            case 2:
+                pesquisarRamal();
+                break;
+            case 3:
+                cout << "Saindo...\n";
+                break;
+            default:
+                cout << "Opção inválida. Tente novamente.\n";
+        }
+    } while (opcao != 3);
+
+    return 0;
+}
