@@ -1,1 +1,84 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <sstream>
+#include <string>
+
+using namespace std;
+
+// Função para ler vetores do arquivo
+vector<vector<int>> lerVetores(const string &nomeArquivo) {
+    ifstream arquivo(nomeArquivo);
+    vector<vector<int>> vetores;
+    string linha;
+
+    if (arquivo.is_open()) {
+        while (getline(arquivo, linha)) {
+            vector<int> vetor;
+            stringstream ss(linha);
+            int numero;
+
+            while (ss >> numero) {
+                vetor.push_back(numero);
+            }
+
+            vetores.push_back(vetor);
+        }
+        arquivo.close();
+    } else {
+        cerr << "Erro ao abrir o arquivo " << nomeArquivo << endl;
+    }
+
+    return vetores;
+}
+
+// Função para somar os vetores
+vector<int> somarVetores(const vector<vector<int>> &vetores) {
+    vector<int> soma;
+
+    if (!vetores.empty()) {
+        soma = vetores[0];
+
+        for (size_t i = 1; i < vetores.size(); ++i) {
+            const vector<int> &vetorAtual = vetores[i];
+
+            if (vetorAtual.size() > soma.size()) {
+                soma.resize(vetorAtual.size(), 0);
+            }
+
+            for (size_t j = 0; j < vetorAtual.size(); ++j) {
+                soma[j] += vetorAtual[j];
+            }
+        }
+    }
+
+    return soma;
+}
+
+// Função para salvar a soma dos vetores no arquivo
+void salvarSoma(const string &nomeArquivo, const vector<int> &soma) {
+    ofstream arquivo(nomeArquivo);
+
+    if (arquivo.is_open()) {
+        for (size_t i = 0; i < soma.size(); ++i) {
+            arquivo << soma[i] << (i < soma.size() - 1 ? " " : "\n");
+        }
+        arquivo.close();
+    } else {
+        cerr << "Erro ao abrir o arquivo " << nomeArquivo << endl;
+    }
+}
+
+int main() {
+    string nomeArquivoVetores = "vetores.txt";
+    string nomeArquivoSoma = "soma.txt";
+
+    vector<vector<int>> vetores = lerVetores(nomeArquivoVetores);
+    vector<int> soma = somarVetores(vetores);
+    salvarSoma(nomeArquivoSoma, soma);
+
+    cout << "A soma dos vetores foi salva em " << nomeArquivoSoma << endl;
+
+    return 0;
+}
 
